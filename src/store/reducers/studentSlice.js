@@ -104,7 +104,6 @@ const studentSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchStudents.fulfilled, (state, action) => {
-        console.log(action.payload, "payload");
         state.status = "succeeded";
         state.students = action.payload;
       })

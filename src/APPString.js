@@ -49,6 +49,7 @@ const APPString = {
       loginSuccess: "User login successful!",
       productDeleteSuccess: "Product deleted successfully",
       studentDeleteSuccess: "Student deleted successfully",
+      courseDeleteSuccess: "Course deleted successfully",
     },
     failed: {
       deleteError: "Failed to delete product",

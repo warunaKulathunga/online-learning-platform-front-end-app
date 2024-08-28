@@ -5,9 +5,18 @@ import { useNavigate } from "react-router-dom";
 const AdminPage = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleStudentNavigate = () => {
     navigate("/student");
   };
+
+  const handleCourseNavigate = () => {
+    navigate("/course");
+  };
+
+  // const handleStudentCourse = () => {
+  //   navigate("/course");
+  // };
+
   return (
     <div className="w-full">
       <Navbar />
@@ -15,11 +24,14 @@ const AdminPage = () => {
         <div class="grid grid-cols-3 gap-4">
           <div
             className="flex items-center justify-center p-16 rounded-md shadow cursor-pointer bg-neutral-200"
-            onClick={handleLogout}
+            onClick={handleStudentNavigate}
           >
             <p className="text-xl font-bold"> Students</p>
           </div>
-          <div className="flex items-center justify-center p-16 rounded-md shadow cursor-pointer bg-neutral-200">
+          <div
+            className="flex items-center justify-center p-16 rounded-md shadow cursor-pointer bg-neutral-200"
+            onClick={handleCourseNavigate}
+          >
             <p className="text-xl font-bold"> Course</p>
           </div>
           <div className="flex items-center justify-center p-16 rounded-md shadow cursor-pointer bg-neutral-200">
