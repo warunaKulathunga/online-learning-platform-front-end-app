@@ -13,9 +13,9 @@ const AdminPage = () => {
     navigate("/course");
   };
 
-  // const handleStudentCourse = () => {
-  //   navigate("/course");
-  // };
+  const handleEnrollmentNavigation = () => {
+    navigate("/enrollment");
+  };
 
   return (
     <div className="w-full">
@@ -34,7 +34,10 @@ const AdminPage = () => {
           >
             <p className="text-xl font-bold"> Course</p>
           </div>
-          <div className="flex items-center justify-center p-16 rounded-md shadow cursor-pointer bg-neutral-200">
+          <div
+            className="flex items-center justify-center p-16 rounded-md shadow cursor-pointer bg-neutral-200"
+            onClick={handleEnrollmentNavigation}
+          >
             <p className="text-xl font-bold">Enrollments</p>
           </div>
         </div>

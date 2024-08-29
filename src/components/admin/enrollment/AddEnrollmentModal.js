@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { createCourse } from "../../../store/reducers/courseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCourses } from "../../../store/reducers/courseSlice";
 import { toast } from "react-toastify";
+import { fetchStudents } from "../../../store/reducers/studentSlice";
+import {
+  createEnrollment,
+  fetchEnrollment,
+} from "../../../store/reducers/enrollmentSlice";
 
 const AddEnrollmentModal = ({ show, onClose }) => {
   const dispatch = useDispatch();
+  const { students } = useSelector((state) => state.students);
+  const { courses } = useSelector((state) => state.courses);
+
+  useEffect(() => {
+    dispatch(fetchCourses());
+    dispatch(fetchStudents());
+  }, []);
 
   if (!show) return null;
 
@@ -26,10 +38,11 @@ const AddEnrollmentModal = ({ show, onClose }) => {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            dispatch(createCourse(values))
+            dispatch(createEnrollment(values))
               .unwrap()
               .then(() => {
-                toast.success("Course added successful!");
+                toast.success("Enrollment added successful!");
+                dispatch(fetchEnrollment());
                 setSubmitting(false);
                 onClose();
               })
@@ -45,10 +58,14 @@ const AddEnrollmentModal = ({ show, onClose }) => {
                 <label className="block text-sm font-medium text-gray-700">
                   Student
                 </label>
-                <Field name="color" as="select">
-                  <option value="red">Red</option>
-                  <option value="green">Green</option>
-                  <option value="blue">Blue</option>
+                <Field
+                  name="studentId"
+                  as="select"
+                  className="w-full p-2 mt-2 border rounded"
+                >
+                  {students.map((student) => {
+                    return <option value={student._id}>{student.name}</option>;
+                  })}
                 </Field>
                 <ErrorMessage
                   name="title"
@@ -60,10 +77,14 @@ const AddEnrollmentModal = ({ show, onClose }) => {
                 <label className="block text-sm font-medium text-gray-700">
                   Course
                 </label>
-                <Field name="color" as="select">
-                  <option value="red">Red</option>
-                  <option value="green">Green</option>
-                  <option value="blue">Blue</option>
+                <Field
+                  name="courseId"
+                  as="select"
+                  className="w-full p-2 mt-2 border rounded"
+                >
+                  {courses.map((course) => {
+                    return <option value={course._id}>{course.title}</option>;
+                  })}
                 </Field>
                 <ErrorMessage
                   name="description"
@@ -71,7 +92,7 @@ const AddEnrollmentModal = ({ show, onClose }) => {
                   className="text-sm text-red-500"
                 />
               </div>
-              <div className="flex justify-end gap-2">
+              <div className="flex justify-end gap-2 mt-7">
                 <button
                   type="button"
                   onClick={onClose}

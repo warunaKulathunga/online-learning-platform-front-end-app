@@ -3,17 +3,17 @@ import axios from "axios";
 import { API_ENDPOINTS } from "./../../apiConfig";
 
 const initialState = {
-  courses: [],
+  enrollments: [],
   status: "idle",
   error: null,
 };
 
-export const fetchCourses = createAsyncThunk(
-  "courses/fetchCourses",
+export const fetchEnrollment = createAsyncThunk(
+  "enrollment/fetchEnrollment",
   async (_, { getState, rejectWithValue }) => {
     try {
       const token = getState().auth.token;
-      const response = await axios.get(API_ENDPOINTS.fetchCourses, {
+      const response = await axios.get(API_ENDPOINTS.fetchEnrollment, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,14 +29,14 @@ export const fetchCourses = createAsyncThunk(
   }
 );
 
-export const createCourse = createAsyncThunk(
-  "courses/createCourse",
-  async (productData, { getState, rejectWithValue }) => {
+export const createEnrollment = createAsyncThunk(
+  "enrollment/createEnrollment",
+  async (enrollmentData, { getState, rejectWithValue }) => {
     try {
       const token = getState().auth.token;
       const response = await axios.post(
-        API_ENDPOINTS.createCourse,
-        productData,
+        API_ENDPOINTS.createEnrollment,
+        enrollmentData,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -52,14 +52,14 @@ export const createCourse = createAsyncThunk(
   }
 );
 
-export const updateCourse = createAsyncThunk(
-  "courses/updateCourse",
-  async (studentData, { getState, rejectWithValue }) => {
+export const updateEnrollment = createAsyncThunk(
+  "enrollment/updateEnrollment",
+  async (enrollmentData, { getState, rejectWithValue }) => {
     try {
       const token = getState().auth.token;
       const response = await axios.put(
-        API_ENDPOINTS.updateCourse(studentData._id),
-        studentData,
+        API_ENDPOINTS.updateEnrollment(enrollmentData._id),
+        enrollmentData,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -75,15 +75,15 @@ export const updateCourse = createAsyncThunk(
   }
 );
 
-export const deleteCourse = createAsyncThunk(
-  "courses/deleteCourses",
-  async (courseId, { getState, rejectWithValue }) => {
+export const deleteEnrollment = createAsyncThunk(
+  "enrollment/deleteEnrollment",
+  async (enrollmentId, { getState, rejectWithValue }) => {
     try {
       const token = getState().auth.token;
-      await axios.delete(API_ENDPOINTS.deleteCourse(courseId), {
+      await axios.delete(API_ENDPOINTS.deleteEnrollment(enrollmentId), {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return courseId;
+      return enrollmentId;
     } catch (error) {
       if (error.response && error.response.data) {
         return rejectWithValue(error.response.data);
@@ -94,40 +94,40 @@ export const deleteCourse = createAsyncThunk(
   }
 );
 
-const courseSlice = createSlice({
-  name: "courses",
+const enrollmentSlice = createSlice({
+  name: "enrollments",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCourses.pending, (state) => {
+      .addCase(fetchEnrollment.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchCourses.fulfilled, (state, action) => {
+      .addCase(fetchEnrollment.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.courses = action.payload.course;
+        state.enrollments = action.payload;
       })
-      .addCase(fetchCourses.rejected, (state, action) => {
+      .addCase(fetchEnrollment.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(createCourse.fulfilled, (state, action) => {
-        state.courses.push(action.payload);
+      .addCase(createEnrollment.fulfilled, (state, action) => {
+        state.enrollments.push(action.payload);
       })
-      .addCase(updateCourse.fulfilled, (state, action) => {
-        const index = state.courses.findIndex(
-          (course) => course._id === action.payload._id
+      .addCase(updateEnrollment.fulfilled, (state, action) => {
+        const index = state.enrollments.findIndex(
+          (enrollment) => enrollment._id === action.payload._id
         );
         if (index !== -1) {
-          state.courses[index] = action.payload;
+          state.enrollments[index] = action.payload;
         }
       })
-      .addCase(deleteCourse.fulfilled, (state, action) => {
-        state.courses = state.courses.filter(
-          (course) => course._id !== action.payload
+      .addCase(deleteEnrollment.fulfilled, (state, action) => {
+        state.enrollments = state.enrollments.filter(
+          (enrollment) => enrollment._id !== action.payload
         );
       });
   },
 });
 
-export default courseSlice.reducer;
+export default enrollmentSlice.reducer;

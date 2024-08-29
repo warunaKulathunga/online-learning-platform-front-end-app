@@ -1,35 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCourses,
   updateCourse,
 } from "../../../store/reducers/courseSlice";
+import { fetchStudents } from "../../../store/reducers/studentSlice";
+import {
+  fetchEnrollment,
+  updateEnrollment,
+} from "../../../store/reducers/enrollmentSlice";
 
-const EditEnrollmentPopup = ({ course, onClose }) => {
+const EditEnrollmentPopup = ({ enrollment, onClose }) => {
   const dispatch = useDispatch();
+  const { students } = useSelector((state) => state.students);
+  const { courses } = useSelector((state) => state.courses);
+
+  useEffect(() => {
+    dispatch(fetchCourses());
+    dispatch(fetchStudents());
+  }, []);
+
+  console.log(enrollment, "edit enrollments");
 
   const validationSchema = Yup.object({
-    title: Yup.string().required("Title is required"),
-    description: Yup.string().required("Description is required"),
+    studentId: Yup.string().required("Title is required"),
+    courseId: Yup.string().required("Description is required"),
   });
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
       <div className="w-full max-w-sm p-4 bg-white rounded-lg">
-        <h2 className="mb-4 text-lg font-semibold">Edit Course</h2>
+        <h2 className="mb-4 text-lg font-semibold">Edit Enrollment</h2>
         <Formik
-          initialValues={course}
+          initialValues={{
+            ...enrollment,
+            studentId: enrollment.student_id._id,
+            courseId: enrollment.course_id._id,
+          }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            dispatch(updateCourse(values))
+            dispatch(updateEnrollment(values))
               .unwrap()
               .then(() => {
-                toast.success("Course updated successfully!");
+                toast.success("Enrollment updated successfully!");
                 setSubmitting(false);
-                dispatch(fetchCourses());
+                dispatch(fetchEnrollment());
                 onClose();
               })
               .catch((error) => {
@@ -42,14 +60,17 @@ const EditEnrollmentPopup = ({ course, onClose }) => {
             <Form>
               <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700">
-                  Title
+                  Student
                 </label>
                 <Field
-                  type="text"
-                  name="title"
-                  className="w-full p-2 mt-1 bg-transparent border-2 border-gray-100 rounded-xl"
-                  placeholder="Enter course title"
-                />
+                  name="studentId"
+                  as="select"
+                  className="w-full p-2 mt-2 border rounded"
+                >
+                  {students.map((student) => {
+                    return <option value={student._id}>{student.name}</option>;
+                  })}
+                </Field>
                 <ErrorMessage
                   name="title"
                   component="div"
@@ -58,48 +79,19 @@ const EditEnrollmentPopup = ({ course, onClose }) => {
               </div>
               <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700">
-                  Description
+                  Course
                 </label>
                 <Field
-                  type="text"
-                  name="description"
-                  className="w-full p-2 mt-1 bg-transparent border-2 border-gray-100 rounded-xl"
-                  placeholder="Enter description"
-                />
+                  name="courseId"
+                  as="select"
+                  className="w-full p-2 mt-2 border rounded"
+                >
+                  {courses.map((course) => {
+                    return <option value={course._id}>{course.title}</option>;
+                  })}
+                </Field>
                 <ErrorMessage
                   name="description"
-                  component="div"
-                  className="text-sm text-red-500"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm font-medium text-gray-700">
-                  Duration
-                </label>
-                <Field
-                  type="text"
-                  name="duration"
-                  className="w-full p-2 mt-1 bg-transparent border-2 border-gray-100 rounded-xl"
-                  placeholder="Enter duration"
-                />
-                <ErrorMessage
-                  name="duration"
-                  component="div"
-                  className="text-sm text-red-500"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm font-medium text-gray-700">
-                  Instructor
-                </label>
-                <Field
-                  type="text"
-                  name="instructor"
-                  className="w-full p-2 mt-1 bg-transparent border-2 border-gray-100 rounded-xl"
-                  placeholder="Enter instructor"
-                />
-                <ErrorMessage
-                  name="instructor"
                   component="div"
                   className="text-sm text-red-500"
                 />

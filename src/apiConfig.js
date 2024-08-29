@@ -12,6 +12,12 @@ const API_ENDPOINTS = {
   createCourse: `${API_BASE_URL}/courses`,
   updateCourse: (coursesId) => `${API_BASE_URL}/courses/${coursesId}`,
   deleteCourse: (coursesId) => `${API_BASE_URL}/courses/${coursesId}`,
+  fetchEnrollment: `${API_BASE_URL}/enrollment`,
+  createEnrollment: `${API_BASE_URL}/enrollment`,
+  updateEnrollment: (enrollmentId) =>
+    `${API_BASE_URL}/enrollment/${enrollmentId}`,
+  deleteEnrollment: (enrollmentId) =>
+    `${API_BASE_URL}/enrollment/${enrollmentId}`,
   fetchProducts: `${API_BASE_URL}/products`,
   createProduct: `${API_BASE_URL}/products`,
   updateProduct: (productId) => `${API_BASE_URL}/products/${productId}`,

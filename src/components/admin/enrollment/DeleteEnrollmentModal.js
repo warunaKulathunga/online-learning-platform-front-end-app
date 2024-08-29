@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteCourseModal = ({ onClose, onSubmit }) => {
+const DeleteEnrollmentModal = ({ onClose, onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit();
@@ -37,4 +37,4 @@ const DeleteCourseModal = ({ onClose, onSubmit }) => {
   );
 };
 
-export default DeleteCourseModal;
+export default DeleteEnrollmentModal;

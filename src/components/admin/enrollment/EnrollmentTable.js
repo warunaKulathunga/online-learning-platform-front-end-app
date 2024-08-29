@@ -1,7 +1,7 @@
 import React from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-const EnrollmentTable = ({ courses, onEdit, onDelete }) => {
+const EnrollmentTable = ({ enrollment, onEdit, onDelete }) => {
   return (
     <div>
       <div className="max-w-[1200px] container mx-auto overflow-x-auto">
@@ -9,38 +9,31 @@ const EnrollmentTable = ({ courses, onEdit, onDelete }) => {
           <thead>
             <tr>
               <th className="px-4 py-2 border-b">ID</th>
-              <th className="px-4 py-2 border-b">Title</th>
-              <th className="px-4 py-2 border-b">Description</th>
-              <th className="px-4 py-2 border-b">Duration</th>
-              <th className="px-4 py-2 border-b">Instructor</th>
-              <th className="px-4 py-2 border-b">Actions</th>
+              <th className="px-4 py-2 border-b">Student</th>
+              <th className="px-4 py-2 border-b">Course</th>
             </tr>
           </thead>
           <tbody>
-            {courses.map((course) => (
-              <tr key={course.id}>
-                <td className="px-4 py-2 text-center border-b">{course._id}</td>
+            {enrollment.map((enrollment) => (
+              <tr key={enrollment._id}>
                 <td className="px-4 py-2 text-center border-b">
-                  {course.title}
+                  {enrollment._id}
                 </td>
                 <td className="px-4 py-2 text-center border-b">
-                  {course.description}
+                  {enrollment.student_id.name}
                 </td>
                 <td className="px-4 py-2 text-center border-b">
-                  {course.duration}
-                </td>
-                <td className="px-4 py-2 text-center border-b">
-                  {course.instructor}
+                  {enrollment.course_id.title}
                 </td>
                 <td className="px-4 py-2 text-center border-b">
                   <button
-                    onClick={() => onEdit(course)}
+                    onClick={() => onEdit(enrollment)}
                     className="mx-2 text-blue-500 hover:text-blue-700"
                   >
                     <FaEdit />
                   </button>
                   <button
-                    onClick={() => onDelete(course._id)}
+                    onClick={() => onDelete(enrollment._id)}
                     className="mx-2 text-red-500 hover:text-red-700"
                   >
                     <FaTrashAlt />

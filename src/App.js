@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./components/route/PrivateRoute";
 import "react-toastify/dist/ReactToastify.css";
 import CoursePage from "./pages/CoursePage";
+import EnrollmentPage from "./pages/EnrollmentPage";
 
 function App() {
   return (
@@ -70,6 +71,14 @@ function App() {
               element={
                 <PrivateRoute roles={["admin"]}>
                   <CoursePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/enrollment"
+              element={
+                <PrivateRoute roles={["admin"]}>
+                  <EnrollmentPage />
                 </PrivateRoute>
               }
             />
