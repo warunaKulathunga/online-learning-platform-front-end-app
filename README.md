@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+## Online Learning Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## his repository contains the backend and frontend code for the Online Learning Platform. Follow the steps below to set up and run both projects.
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+## The Online Learning Platform is a full-stack application designed to provide an interface for online learning, including an admin panel for managing content and users. This repository contains the code for both the backend and frontend components of the platform.
 
-### `npm start`
+## Backend Project [Node.js]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Ensure that the following software is installed on your system:
 
-### `npm test`
+Node.js
+npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+## To set up the backend project, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Install Node Modules
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run the following command to install the necessary dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm install
 
-### `npm run eject`
+## Running the Project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## To start the development server, execute the following command:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm run dev
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Admin Account Credentials
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Use the following credentials to log in as an admin:
 
-## Learn More
+Username: admin@gmail.com
+Password: admin123
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Frontend Project [React]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Prerequisites
 
-### Code Splitting
+## Ensure that the following software is installed on your system:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Node.js
+npm
 
-### Analyzing the Bundle Size
+## Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## To set up the frontend project, follow these steps:
 
-### Making a Progressive Web App
+## Install Node Modules
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Run the following command to install the necessary dependencies:
 
-### Advanced Configuration
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Running the Project
 
-### Deployment
+## To start the frontend application, execute the following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+npm run start
 
-### `npm run build` fails to minify
+## Additional Information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Ensure that both the backend and frontend servers are running simultaneously to achieve full functionality.
+
+## The admin account was initially created using Postman. You can modify or create additional accounts as needed.
