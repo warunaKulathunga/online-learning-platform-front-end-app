@@ -23,8 +23,8 @@ const AddEnrollmentModal = ({ show, onClose }) => {
   if (!show) return null;
 
   const validationSchema = Yup.object({
-    studentId: Yup.string().required("Title is required"),
-    courseId: Yup.string().required("Description is required"),
+    studentId: Yup.string().required("Student is required"),
+    courseId: Yup.string().required("Course is required"),
   });
 
   return (
@@ -33,8 +33,8 @@ const AddEnrollmentModal = ({ show, onClose }) => {
         <h2 className="mb-4 text-lg font-semibold">Add New Enrollment</h2>
         <Formik
           initialValues={{
-            studentId: "",
-            courseId: "",
+            studentId: students[0]._id,
+            courseId: courses[0]._id,
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -68,7 +68,7 @@ const AddEnrollmentModal = ({ show, onClose }) => {
                   })}
                 </Field>
                 <ErrorMessage
-                  name="title"
+                  name="studentId"
                   component="div"
                   className="text-sm text-red-500"
                 />
@@ -87,7 +87,7 @@ const AddEnrollmentModal = ({ show, onClose }) => {
                   })}
                 </Field>
                 <ErrorMessage
-                  name="description"
+                  name="courseId"
                   component="div"
                   className="text-sm text-red-500"
                 />

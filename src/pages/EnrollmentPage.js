@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Dashboard/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteStudent, fetchStudents } from "../store/reducers/studentSlice";
-import { fetchCourses } from "../store/reducers/courseSlice";
 import { toast } from "react-toastify";
 import APPString from "../APPString";
 import AddEnrollmentModal from "../components/admin/enrollment/AddEnrollmentModal";
@@ -16,15 +14,10 @@ import {
 
 const EnrollmentPage = () => {
   const dispatch = useDispatch();
-  const { enrollments, status, error } = useSelector(
-    (state) => state.enrollment
-  );
+  const { enrollments } = useSelector((state) => state.enrollment);
   const [showModal, setShowModal] = useState(false);
   const [editEnrollment, setEditEnrollment] = useState(null);
   const [deleteEnrollmentId, setDeleteEnrollment] = useState(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  console.log(enrollments, "enrollment");
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -39,7 +32,6 @@ const EnrollmentPage = () => {
   };
 
   const handleDelete = (enrollmentId) => {
-    //  setIsModalVisible(true);
     setDeleteEnrollment(enrollmentId);
   };
 
@@ -51,7 +43,6 @@ const EnrollmentPage = () => {
     } catch (err) {
       toast.error(`Failed to delete enrollment: ${err.message}`);
     }
-    // setIsModalVisible(false);
     setDeleteEnrollment(null);
   };
 
