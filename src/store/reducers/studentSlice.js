@@ -29,29 +29,6 @@ export const fetchStudents = createAsyncThunk(
   }
 );
 
-// export const createProduct = createAsyncThunk(
-//   "products/createProduct",
-//   async (productData, { getState, rejectWithValue }) => {
-//     try {
-//       const token = getState().auth.token;
-//       const response = await axios.post(
-//         API_ENDPOINTS.createProduct,
-//         productData,
-//         {
-//           headers: { Authorization: `Bearer ${token}` },
-//         }
-//       );
-//       return response.data;
-//     } catch (error) {
-//       if (error.response && error.response.data) {
-//         return rejectWithValue(error.response.data);
-//       } else {
-//         return rejectWithValue(error.message);
-//       }
-//     }
-//   }
-// );
-
 export const updateStudent = createAsyncThunk(
   "students/updateStudent",
   async (studentData, { getState, rejectWithValue }) => {
@@ -111,9 +88,6 @@ const studentSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      // .addCase(createProduct.fulfilled, (state, action) => {
-      //   state.products.push(action.payload);
-      // });
       .addCase(updateStudent.fulfilled, (state, action) => {
         const index = state.students.findIndex(
           (student) => student._id === action.payload._id

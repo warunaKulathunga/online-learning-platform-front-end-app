@@ -1,13 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { retry } from "@reduxjs/toolkit/query";
-
-// const PrivateRoute = ({ children }) => {
-//   const token = useSelector((state) => state.auth.token);
-
-//   return token ? children : <Navigate to="/login" />;
-// };
 
 const PrivateRoute = ({ children, roles }) => {
   const { token, user } = useSelector((state) => state.auth);

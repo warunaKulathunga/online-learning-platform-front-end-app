@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-// import { createProduct } from "../../store/reducers/productSlice";
 import { toast } from "react-toastify";
 import APPString from "./../../../APPString";
 import { registerUser } from "../../../store/reducers/authSlice";

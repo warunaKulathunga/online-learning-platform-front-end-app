@@ -14,27 +14,6 @@ import EnrollmentPage from "./pages/EnrollmentPage";
 
 function App() {
   return (
-    // <Provider store={store}>
-    //   <Router>
-    //     <div>
-    //       <ToastContainer />
-    //       <Routes>
-    //         <Route path="/login" element={<LoginPage />} />
-    //         <Route path="/register" element={<RegisterPage />} />
-    //         <Route
-    //           path="/dashboard"
-    //           element={
-    //             <PrivateRoute>
-    //               <DashboardPage />
-    //             </PrivateRoute>
-    //           }
-    //         />
-    //         <Route path="*" element={<LoginPage />} />
-    //       </Routes>
-    //     </div>
-    //   </Router>
-    // </Provider>
-
     <Provider store={store}>
       <Router>
         <div>
